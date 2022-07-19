@@ -1,10 +1,13 @@
 /*
     etch a sketch CSS
+    color scheme: https://coolors.co/palette/05668d-028090-00a896-02c39a-f0f3bd
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@500&display=swap');
 
 .container {
+    font-family: 'Roboto', sans-serif;
+    color: #028090;
     background-color: #f0f3bd;
     display: flex;
     flex-direction: column;
@@ -18,11 +21,17 @@
     margin: 2vh 2vw;
 }
 
+.contents-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
 .grid-container {
     display: flex;
     flex-direction: column;
-    height: 40vw;
-    width: 40vw;
+    height: 45vw;
+    width: 45vw;
 }
 
 .row {
@@ -75,3 +84,7 @@
     opacity: 1;
 }
 
+.grid-dim {
+    margin: 2px;
+    text-align: center;
+}
