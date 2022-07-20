@@ -1,6 +1,6 @@
 // etch a sketch javascript
 
-let dims, drawOption;
+let dims, drawOption = 'Black';
 initialize();
 
 function attachGridDimsEvents(gridContainer, dimsSlider, display) {
@@ -28,7 +28,17 @@ function attachGridDimsEvents(gridContainer, dimsSlider, display) {
     })
 }
 
-function attachDraw(mode = "Black") {
+function chooseColor() {
+    if(drawOption === 'Black')
+        return 'black';
+    else if(drawOption === 'Color')
+        return 'green';
+    else if(drawOption === 'Erase')
+        return 'white';
+
+}
+
+function attachDraw() {
     const boxes = document.querySelectorAll('.box');
     let moved = false;
 
@@ -39,16 +49,7 @@ function attachDraw(mode = "Black") {
             }));
             box.addEventListener('mouseover', e => {
                 if(moved)
-                    switch(mode) {
-                        case 'Black':   e.target.style.backgroundColor = 'black';
-                                        break;
-                        case 'Color':   e.target.style.backgroundColor = 'green';
-                                        break;
-                        case 'Erase':   e.target.style.backgroundColor = 'white';
-                                        break;
-                    }
-                    
-                
+                    e.target.style.backgroundColor = chooseColor();
             })
             box.addEventListener('mouseup', e => {
                 moved = false;
@@ -58,10 +59,10 @@ function attachDraw(mode = "Black") {
 }
 
 function attachModeSelector(modeRadios) {
-    
     modeRadios.forEach(button => {
         button.addEventListener('click', e => {
-            attachDraw(e.target.value);
+            drawOption = e.target.value;
+            attachDraw();
         })
     })
 }
