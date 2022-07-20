@@ -1,6 +1,6 @@
 // etch a sketch javascript
 
-let dims;
+let dims, drawOption;
 initialize();
 
 function attachGridDimsEvents(gridContainer, dimsSlider, display) {
@@ -28,6 +28,44 @@ function attachGridDimsEvents(gridContainer, dimsSlider, display) {
     })
 }
 
+function attachDraw(mode = "Black") {
+    const boxes = document.querySelectorAll('.box');
+    let moved = false;
+
+    boxes.forEach(
+        box => {
+            box.addEventListener('mousedown', (e => {
+                moved = true;
+            }));
+            box.addEventListener('mouseover', e => {
+                if(moved)
+                    switch(mode) {
+                        case 'Black':   e.target.style.backgroundColor = 'black';
+                                        break;
+                        case 'Color':   e.target.style.backgroundColor = 'green';
+                                        break;
+                        case 'Erase':   e.target.style.backgroundColor = 'white';
+                                        break;
+                    }
+                    
+                
+            })
+            box.addEventListener('mouseup', e => {
+                moved = false;
+            })
+        }
+    );
+}
+
+function attachModeSelector(modeRadios) {
+    
+    modeRadios.forEach(button => {
+        button.addEventListener('click', e => {
+            attachDraw(e.target.value);
+        })
+    })
+}
+
 function createGrid(gridContainer, dims) {
     gridContainer.replaceChildren();
     for(let i=0;i<dims;i++) {
@@ -39,6 +77,7 @@ function createGrid(gridContainer, dims) {
         }
         gridContainer.appendChild(row);
     }
+    attachDraw();
 }
 
 function createGridBox() {
@@ -56,6 +95,7 @@ function createGridBox() {
 function initialize() {
     // Query selecting elements
     const dimsSlider = document.querySelector('.slider');
+    const modeRadios = document.querySelectorAll('input[name="mode"]')
     const display = document.querySelector('.grid-dim');
     const gridContainer = document.querySelector('.grid-container');
 
@@ -67,4 +107,5 @@ function initialize() {
 
     //Adding event listeners
     attachGridDimsEvents(gridContainer, dimsSlider, display);
+    attachModeSelector(modeRadios);
 }
