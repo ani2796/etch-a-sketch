@@ -2,28 +2,21 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="./style.css">
-        <script href="./script.js" defer?></script>
+        <script src="script.js" defer></script>
         <title>Sketchy Behaviour</title>
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body class="container">
         <h1 class="heading">Sketchy Behaviour</h1>
         <div class="contents-container">
             <div class="options-container">
                 <div class="slider-container">
-                    <p class="slider-heading">Grid dimensions</p>
-                    <input type="range" class="slider" min="1" max="100" class="slider">
-                    <p class="grid-dim"></p>
+                    <p class="slider-heading">Grid dimension</p>
+                    <input type="range" class="slider" min="1" max="100" value="50">
+                    <input class="grid-dim">
                 </div>
             </div>
             <div class="grid-container">
-                <div class="row">
-                    <div class="box"></div>
-                    <div class="box"></div>
-                </div>
-                <div class="row">
-                    <div class="box"></div>
-                    <div class="box"></div>
                 </div>
             </div>
         </div>
